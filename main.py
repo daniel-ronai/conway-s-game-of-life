@@ -80,6 +80,7 @@ def main():
     update_freq = 30
     
     positions = set()
+    positions = gen(random.randrange(10, 20) * GRID_WIDTH)
     while running:
         clock.tick(FPS)
         
