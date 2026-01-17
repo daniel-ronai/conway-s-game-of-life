@@ -4,6 +4,8 @@ import random
 import ctypes
 ctypes.windll.user32.SetProcessDPIAware() # lock screen size
 
+from patterns import GLIDER, PULSAR, NETMAKER
+
 pygame.init()
 
 DEAD = (0, 0, 0) 
@@ -11,7 +13,7 @@ ALIVE = (0, 255, 128)
 GRIDLINES = (128, 128, 128) 
 
 WIDTH, HEIGHT = 800, 800
-TILE_SIZE = 10
+TILE_SIZE = 5
 GRID_WIDTH = WIDTH // TILE_SIZE
 GRID_HEIGHT = HEIGHT // TILE_SIZE
 FPS = 60
@@ -80,7 +82,7 @@ def main():
     update_freq = 30
     
     positions = set()
-    positions = gen(random.randrange(10, 20) * GRID_WIDTH)
+    positions = gen(random.randrange(30, 40) * GRID_WIDTH)
     while running:
         clock.tick(FPS)
         
@@ -118,7 +120,16 @@ def main():
                     count = 0
                     
                 if event.key == pygame.K_g:
-                    positions = gen(random.randrange(10, 20) * GRID_WIDTH)
+                    positions = gen(random.randrange(30, 40) * GRID_WIDTH)
+                
+                if event.key == pygame.K_1:
+                    positions = GLIDER
+                    
+                if event.key == pygame.K_2:
+                    positions = PULSAR
+                    
+                if event.key == pygame.K_3:
+                    positions = NETMAKER
 
         screen.fill(DEAD)
         draw_grid(positions)
